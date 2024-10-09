@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #F3F3F3;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.svgs.AdminController">
+    <top>
+        <SplitPane dividerPositions="0.5" orientation="HORIZONTAL" style="-fx-padding: 20;">
+            <!-- Add User Section -->
+            <VBox spacing="20" style="-fx-padding: 15; -fx-background-color: #FFFFFF; -fx-border-color: lightgray; -fx-border-radius: 10; -fx-background-radius: 10;">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;" text="Add User" />
+                <GridPane hgap="10" vgap="15">
+                    <Label text="First Name:" />
+                    <TextField fx:id="firstNameField" promptText="Enter first name" GridPane.columnIndex="1" />
+                    
+                    <Label text="Last Name:" GridPane.rowIndex="1" />
+                    <TextField fx:id="lastNameField" promptText="Enter last name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    
+                    <Label text="Address:" GridPane.rowIndex="2" />
+                    <TextField fx:id="addressField" promptText="Enter address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    
+                    <Label text="Email:" GridPane.rowIndex="3" />
+                    <TextField fx:id="emailField" promptText="Enter email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    
+                    <Label text="Library Patron No:" GridPane.rowIndex="4" />
+                    <TextField fx:id="patronNumberField" promptText="Enter patron number" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+                <Button onAction="#handleAddUser" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Add User" />
+            </VBox>
+
+            <!-- Add Book Section -->
+            <VBox spacing="20" style="-fx-padding: 15; -fx-background-color: #FFFFFF; -fx-border-color: lightgray; -fx-border-radius: 10; -fx-background-radius: 10;">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2196F3;" text="Add Book" />
+                <GridPane hgap="10" vgap="15">
+                    <Label text="Title:" />
+                    <TextField fx:id="titleField" promptText="Enter book title" GridPane.columnIndex="1" />
+                    
+                    <Label text="Author:" GridPane.rowIndex="1" />
+                    <TextField fx:id="authorField" promptText="Enter author name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    
+                    <Label text="ISBN:" GridPane.rowIndex="2" />
+                    <TextField fx:id="isbnField" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    
+                    <Label text="Book Number:" GridPane.rowIndex="3" />
+                    <TextField fx:id="bookNumberField" promptText="Enter book number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+                <Button onAction="#handleAddBook" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px;" text="Add Book" />
+            </VBox>
+        </SplitPane>
+    </top>
+    
+    <!-- View Users Section -->
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <HBox spacing="10">
+                <TextField fx:id="searchFirstNameField" promptText="Search by First Name" />
+                <TextField fx:id="searchLastNameField" promptText="Search by Last Name" />
+                <TextField fx:id="searchPatronNumberField" promptText="Search by Patron Number" />
+                <Button onAction="#handleSearchUsers" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" style="-fx-background-color: #FF9800; -fx-text-fill: white;" text="Search" />
+            </HBox>
+            <HBox spacing="20" style="-fx-padding: 15; -fx-background-color: #FFFFFF; -fx-border-color: lightgray; -fx-border-radius: 10; -fx-background-radius: 10;">
+                <VBox spacing="10">
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Search Results" />
+                    <ListView fx:id="userResultsListView" prefHeight="200" style="-fx-background-color: #FAFAFA; -fx-border-color: lightgray;" />
+                </VBox>
+                <VBox spacing="10">
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Books Checked Out" />
+                    <ListView fx:id="booksCheckedOutListView" prefHeight="200" style="-fx-background-color: #FAFAFA; -fx-border-color: lightgray;" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label fx:id="overdueCountLabel" style="-fx-font-weight: bold;" text="Total Overdue: 0" />
+                        <Button onAction="#handleDeleteUser" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Delete User" />
+                    </HBox>
+                </VBox>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="134.0" prefWidth="183.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goHome" onMousePressed="#handleButtonPress" onMouseReleased="#handleButtonRelease" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px;" text="Home" />
+               </children>
+            </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
